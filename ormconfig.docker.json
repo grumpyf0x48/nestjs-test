@@ -1,0 +1,15 @@
+{
+  "name": "default",
+  "type": "mysql",
+  "host": "db",
+  "port": 3306,
+  "username": "mysql",
+  "password": "mysql",
+  "database": "cars",
+  "synchronize": true,
+  "logging": true,
+  "dropSchema": false,
+  "entities": [
+    "dist/**/*.entity{.ts,.js}"
+  ]
+}
