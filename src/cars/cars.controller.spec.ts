@@ -60,6 +60,21 @@ describe('CarsController', () => {
     }
   });
 
+  it('create with future date should return firstRegistrationDate should be in the past', async () => {
+    const invalidDateCreateCarReq = computeCreateCarRequest();
+    invalidDateCreateCarReq.firstRegistrationDate = '2059-12-25T15:22:00.000Z';
+    try {
+      await controller.create(invalidDateCreateCarReq);
+      fail('expected HttpException');
+    } catch (exception) {
+      if (!(exception instanceof HttpException)) {
+        fail('expected HttpException');
+      }
+      expect(exception.getStatus()).toBe(HttpStatus.BAD_REQUEST);
+      expect(exception.message).toBe('firstRegistrationDate should be in the past');
+    }
+  });
+
   it('create without manufacturer should return Missing manufacturer', async () => {
     const createCarRequest = new CreateCarRequest();
     createCarRequest.id = 'Car1';

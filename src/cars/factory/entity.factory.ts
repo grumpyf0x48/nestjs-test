@@ -16,7 +16,11 @@ export class EntityFactory {
     carEntity.id = EntityFactory.validateId(createCarRequest.id);
     carEntity.manufacturer = EntityFactory.createManufacturerEntity(createCarRequest.manufacturer);
     carEntity.price = createCarRequest.price;
-    carEntity.firstRegistrationDate = EntityFactory.validateDate(createCarRequest.firstRegistrationDate);
+    const firstRegistrationDate = EntityFactory.validateDate(createCarRequest.firstRegistrationDate);
+    if (firstRegistrationDate > new Date())  {
+      throw new HttpException('firstRegistrationDate should be in the past', HttpStatus.BAD_REQUEST);
+    }
+    carEntity.firstRegistrationDate = firstRegistrationDate;
     carEntity.owners = EntityFactory.createOwnersEntities(createCarRequest.owners);
     return carEntity;
   }

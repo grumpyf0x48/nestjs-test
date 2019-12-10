@@ -45,6 +45,13 @@ describe('CarsController (e2e)', () => {
   invalidDateCreateCarReq.firstRegistrationDate = '2019-13-25T15:22:00.000Z';
   invalidDateCreateCarReq.owners = [];
 
+  const futureDateCreateCarReq = new CreateCarRequest();
+  futureDateCreateCarReq.id = 'Car1';
+  futureDateCreateCarReq.manufacturer = createManufacturerReq;
+  futureDateCreateCarReq.price = 25000;
+  futureDateCreateCarReq.firstRegistrationDate = '2059-12-25T15:22:00.000Z';
+  futureDateCreateCarReq.owners = [];
+
   // Invalid car id
   const createCarReqInvalidId = new CreateCarRequest();
 
@@ -93,6 +100,9 @@ describe('CarsController (e2e)', () => {
 
   // Expected error responses (POST)
   const invalidDateRes = new ErrorMock(HttpStatus.BAD_REQUEST, 'Invalid date');
+
+  // Expected error responses (POST)
+  const futureDateRes = new ErrorMock(HttpStatus.BAD_REQUEST, 'firstRegistrationDate should be in the past');
 
   // Expected error responses (POST)
   const noManufacturerRes = new ErrorMock(HttpStatus.BAD_REQUEST, 'Missing manufacturer');
@@ -148,6 +158,14 @@ describe('CarsController (e2e)', () => {
       .send(invalidDateCreateCarReq)
       .expect(HttpStatus.BAD_REQUEST)
       .expect(JSON.stringify(invalidDateRes));
+  });
+
+  it('/cars (POST) should return firstRegistrationDate is in the past when in the future', () => {
+    return request(application.getHttpServer())
+        .post(URL)
+        .send(futureDateCreateCarReq)
+        .expect(HttpStatus.BAD_REQUEST)
+        .expect(JSON.stringify(futureDateRes));
   });
 
   it('/cars (GET)', () => {
