@@ -38,10 +38,7 @@ $ npm install
 
 ```bash
 
-# Build Docker image app
-$ docker build -t cars-backend .
-
-# Start app
+# Build and start app
 $ docker-compose up
 
 # Use it

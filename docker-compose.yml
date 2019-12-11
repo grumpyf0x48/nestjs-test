@@ -8,13 +8,10 @@ services:
       MYSQL_USER: mysql
       MYSQL_PASSWORD: mysql
       MYSQL_ROOT_PASSWORD: root
-    volumes:
-      - ./mysqldata:/var/lib/mysql
     ports:
       - "3306:3306"
   cars:
-    image: cars-backend
-    hostname: cars
+    build: ./
     environment:
       WAIT_HOSTS: db:3306
       WAIT_HOSTS_TIMEOUT: 90
