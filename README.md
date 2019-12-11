@@ -26,12 +26,27 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+[Cars Backend](https://github.com/grumpyf0x48/cars-backend-test) application using [Nest](https://github.com/nestjs/nest) framework.
 
 ## Installation
 
 ```bash
 $ npm install
+```
+
+## Running the app with Docker
+
+```bash
+
+# Build Docker image app
+$ docker build -t cars-backend .
+
+# Start app
+$ docker-compose up
+
+# Use it
+$ firefox http://localhost:3000/api &
+
 ```
 
 ## Running the app
