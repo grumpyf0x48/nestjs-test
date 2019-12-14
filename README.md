@@ -50,6 +50,8 @@ $ firefox http://localhost:3000/api &
 
 ```bash
 # development
+
+# Define host, user, password and database in ormconfig.json or create .env file
 $ npm run start
 
 # watch mode
