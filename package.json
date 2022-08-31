@@ -23,7 +23,7 @@
     "@nestjs/common": "^6.11.11",
     "@nestjs/core": "^6.11.11",
     "@nestjs/platform-express": "^6.11.11",
-    "@nestjs/swagger": "^4.5.1",
+    "@nestjs/swagger": "^4.8.2",
     "@nestjs/typeorm": "^6.3.4",
     "http-status-codes": "^1.4.0",
     "mysql": "^2.18.1",
